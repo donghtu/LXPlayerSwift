@@ -12,8 +12,8 @@
 		376D445F21774171008EC6FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376D445D21774171008EC6FB /* Main.storyboard */; };
 		376D446121774172008EC6FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 376D446021774172008EC6FB /* Assets.xcassets */; };
 		376D446421774172008EC6FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376D446221774172008EC6FB /* LaunchScreen.storyboard */; };
-		376D446D21774182008EC6FB /* LXPLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D446B21774181008EC6FB /* LXPLayerViewController.swift */; };
-		376D446E21774182008EC6FB /* LXPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D446C21774182008EC6FB /* LXPlayerController.swift */; };
+		37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */; };
+		37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +24,8 @@
 		376D446021774172008EC6FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		376D446321774172008EC6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		376D446521774172008EC6FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		376D446B21774181008EC6FB /* LXPLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LXPLayerViewController.swift; path = ../../LXAVPlayerSwift/LXAVPlayerSwift/LXPLayerViewController.swift; sourceTree = "<group>"; };
-		376D446C21774182008EC6FB /* LXPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LXPlayerController.swift; path = ../../LXAVPlayerSwift/LXAVPlayerSwift/LXPlayerController.swift; sourceTree = "<group>"; };
+		37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPlayerController.swift; sourceTree = "<group>"; };
+		37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPLayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +60,9 @@
 			children = (
 				376D445921774171008EC6FB /* AppDelegate.swift */,
 				376D445B21774171008EC6FB /* ViewController.swift */,
-				376D446C21774182008EC6FB /* LXPlayerController.swift */,
-				376D446B21774181008EC6FB /* LXPLayerViewController.swift */,
 				376D445D21774171008EC6FB /* Main.storyboard */,
+				37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */,
+				37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */,
 				376D446021774172008EC6FB /* Assets.xcassets */,
 				376D446221774172008EC6FB /* LaunchScreen.storyboard */,
 				376D446521774172008EC6FB /* Info.plist */,
@@ -141,10 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376D446E21774182008EC6FB /* LXPlayerController.swift in Sources */,
-				376D446D21774182008EC6FB /* LXPLayerViewController.swift in Sources */,
 				376D445C21774171008EC6FB /* ViewController.swift in Sources */,
 				376D445A21774171008EC6FB /* AppDelegate.swift in Sources */,
+				37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */,
+				37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
