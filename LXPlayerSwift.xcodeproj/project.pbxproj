@@ -12,8 +12,11 @@
 		376D445F21774171008EC6FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376D445D21774171008EC6FB /* Main.storyboard */; };
 		376D446121774172008EC6FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 376D446021774172008EC6FB /* Assets.xcassets */; };
 		376D446421774172008EC6FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376D446221774172008EC6FB /* LaunchScreen.storyboard */; };
+		377A8A082178717E007ABCCE /* LXPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A8A072178717E007ABCCE /* LXPlayerView.swift */; };
+		377A8A0B21787BA1007ABCCE /* hubblecast.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 377A8A0A21787BA1007ABCCE /* hubblecast.m4v */; };
 		37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */; };
 		37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */; };
+		37CD1A22217825EB00EC1A05 /* LXTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A21217825EB00EC1A05 /* LXTransport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +27,11 @@
 		376D446021774172008EC6FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		376D446321774172008EC6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		376D446521774172008EC6FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		377A8A072178717E007ABCCE /* LXPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPlayerView.swift; sourceTree = "<group>"; };
+		377A8A0A21787BA1007ABCCE /* hubblecast.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = hubblecast.m4v; sourceTree = "<group>"; };
 		37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPlayerController.swift; sourceTree = "<group>"; };
 		37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPLayerViewController.swift; sourceTree = "<group>"; };
+		37CD1A21217825EB00EC1A05 /* LXTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTransport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +66,25 @@
 			children = (
 				376D445921774171008EC6FB /* AppDelegate.swift */,
 				376D445B21774171008EC6FB /* ViewController.swift */,
+				37CD1A21217825EB00EC1A05 /* LXTransport.swift */,
 				376D445D21774171008EC6FB /* Main.storyboard */,
 				37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */,
+				377A8A072178717E007ABCCE /* LXPlayerView.swift */,
 				37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */,
+				377A8A0921787B5C007ABCCE /* Supporting Files */,
 				376D446021774172008EC6FB /* Assets.xcassets */,
 				376D446221774172008EC6FB /* LaunchScreen.storyboard */,
 				376D446521774172008EC6FB /* Info.plist */,
 			);
 			path = LXPlayerSwift;
+			sourceTree = "<group>";
+		};
+		377A8A0921787B5C007ABCCE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				377A8A0A21787BA1007ABCCE /* hubblecast.m4v */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377A8A0B21787BA1007ABCCE /* hubblecast.m4v in Resources */,
 				376D446421774172008EC6FB /* LaunchScreen.storyboard in Resources */,
 				376D446121774172008EC6FB /* Assets.xcassets in Resources */,
 				376D445F21774171008EC6FB /* Main.storyboard in Resources */,
@@ -144,7 +162,9 @@
 				376D445C21774171008EC6FB /* ViewController.swift in Sources */,
 				376D445A21774171008EC6FB /* AppDelegate.swift in Sources */,
 				37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */,
+				377A8A082178717E007ABCCE /* LXPlayerView.swift in Sources */,
 				37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */,
+				37CD1A22217825EB00EC1A05 /* LXTransport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

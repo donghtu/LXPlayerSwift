@@ -13,6 +13,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let localURL = Bundle.main.url(forResource: "hubblecast", withExtension: "m4v")
+        
+        let controller : LXPlayerController = LXPlayerController(url: localURL!)
+        let playerView  = controller.view
+        playerView.frame = self.view.frame
+        self.view.addSubview(playerView )
     }
 
     override func didReceiveMemoryWarning() {

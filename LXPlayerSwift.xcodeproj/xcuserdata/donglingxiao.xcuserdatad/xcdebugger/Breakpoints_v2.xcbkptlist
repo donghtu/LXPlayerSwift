@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LXPlayerSwift/LXPlayerController.swift"
+            timestampString = "561550574.138702"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "LXPlayerController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LXPlayerSwift/ViewController.swift"
+            timestampString = "561550574.139815"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LXPlayerSwift/LXPlayerController.swift"
+            timestampString = "561550574.1400959"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "observeValue(forKeyPath:of:change:context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LXPlayerSwift.LXPlayerController.observeValue(forKeyPath: Swift.Optional&lt;Swift.String&gt;, of: Swift.Optional&lt;Any&gt;, change: Swift.Optional&lt;Swift.Dictionary&lt;__C.NSKeyValueChangeKey, Any&gt;&gt;, context: Swift.Optional&lt;Swift.UnsafeMutableRawPointer&gt;) -&gt; ()"
+                  moduleName = "LXPlayerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/donglingxiao/Documents/GitHub/LXPlayerSwift/LXPlayerSwift/LXPlayerController.swift"
+                  timestampString = "561549426.597967"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "223">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in LXPlayerSwift.LXPlayerController.observeValue(forKeyPath: Swift.Optional&lt;Swift.String&gt;, of: Swift.Optional&lt;Any&gt;, change: Swift.Optional&lt;Swift.Dictionary&lt;__C.NSKeyValueChangeKey, Any&gt;&gt;, context: Swift.Optional&lt;Swift.UnsafeMutableRawPointer&gt;) -&gt; ()"
+                  moduleName = "LXPlayerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/donglingxiao/Documents/GitHub/LXPlayerSwift/LXPlayerSwift/LXPlayerController.swift"
+                  timestampString = "561549426.60847"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
