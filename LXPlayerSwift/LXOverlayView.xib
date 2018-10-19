@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LXOverlayView" customModule="LXPlayerSwift" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LXOverlayView" customModule="LXPlayerSwift" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2So-mN-oxC">
+                    <rect key="frame" x="16" y="0.0" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Bal-el-wRX"/>
+                        <constraint firstAttribute="width" constant="46" id="Wm0-cw-m5z"/>
+                    </constraints>
+                    <state key="normal" title="Done"/>
+                    <connections>
+                        <action selector="doneButtonClicked:" destination="-1" eventType="touchUpInside" id="mDc-hD-uYs"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cm-gk-ExR">
+                    <rect key="frame" x="605" y="0.0" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="9Ny-73-u2P"/>
+                        <constraint firstAttribute="width" secondItem="1cm-gk-ExR" secondAttribute="height" multiplier="23:15" id="tOE-Eg-xyJ"/>
+                        <constraint firstAttribute="width" constant="46" id="upS-He-ueS"/>
+                    </constraints>
+                    <state key="normal" title="Show"/>
+                    <connections>
+                        <action selector="showButtonClicked:" destination="-1" eventType="touchUpInside" id="XqM-mI-G8G"/>
+                    </connections>
+                </button>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-Bw-qMr">
+                    <rect key="frame" x="14" y="332" width="639" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="29" id="GfR-zf-nHz"/>
+                    </constraints>
+                    <connections>
+                        <action selector="hidePopupUI:" destination="-1" eventType="touchUpInside" id="lhe-bi-xmU"/>
+                        <action selector="showPopupUI:" destination="-1" eventType="valueChanged" id="m4N-1x-aUM"/>
+                        <action selector="unhidePopupUI:" destination="-1" eventType="touchDown" id="d2d-k2-gYE"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1cm-gk-ExR" secondAttribute="trailing" constant="16" id="3dP-Cc-Dwi"/>
+                <constraint firstItem="1cm-gk-ExR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="70y-kV-aGx"/>
+                <constraint firstItem="2So-mN-oxC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="GDQ-Da-mwv"/>
+                <constraint firstItem="AkZ-Bw-qMr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HsT-rJ-wea"/>
+                <constraint firstItem="2So-mN-oxC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="jzo-A6-EE5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AkZ-Bw-qMr" secondAttribute="trailing" constant="16" id="qY6-Le-ksD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="AkZ-Bw-qMr" secondAttribute="bottom" constant="14" id="vmT-5H-K7l"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+        </view>
+    </objects>
+</document>

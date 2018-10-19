@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372799BB217974EA00261A99 /* LXOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372799BA217974EA00261A99 /* LXOverlayView.swift */; };
+		372799C62179A6DC00261A99 /* LXOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 372799C52179A6DC00261A99 /* LXOverlayView.xib */; };
 		376D445A21774171008EC6FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D445921774171008EC6FB /* AppDelegate.swift */; };
 		376D445C21774171008EC6FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D445B21774171008EC6FB /* ViewController.swift */; };
 		376D445F21774171008EC6FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376D445D21774171008EC6FB /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		372799BA217974EA00261A99 /* LXOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOverlayView.swift; sourceTree = "<group>"; };
+		372799C52179A6DC00261A99 /* LXOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXOverlayView.xib; sourceTree = "<group>"; };
 		376D445621774171008EC6FB /* LXPlayerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXPlayerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		376D445921774171008EC6FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		376D445B21774171008EC6FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				37CD1A21217825EB00EC1A05 /* LXTransport.swift */,
 				376D445D21774171008EC6FB /* Main.storyboard */,
 				37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */,
+				372799BA217974EA00261A99 /* LXOverlayView.swift */,
+				372799C52179A6DC00261A99 /* LXOverlayView.xib */,
 				377A8A072178717E007ABCCE /* LXPlayerView.swift */,
 				37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */,
 				377A8A0921787B5C007ABCCE /* Supporting Files */,
@@ -147,6 +153,7 @@
 			files = (
 				377A8A0B21787BA1007ABCCE /* hubblecast.m4v in Resources */,
 				376D446421774172008EC6FB /* LaunchScreen.storyboard in Resources */,
+				372799C62179A6DC00261A99 /* LXOverlayView.xib in Resources */,
 				376D446121774172008EC6FB /* Assets.xcassets in Resources */,
 				376D445F21774171008EC6FB /* Main.storyboard in Resources */,
 			);
@@ -161,6 +168,7 @@
 			files = (
 				376D445C21774171008EC6FB /* ViewController.swift in Sources */,
 				376D445A21774171008EC6FB /* AppDelegate.swift in Sources */,
+				372799BB217974EA00261A99 /* LXOverlayView.swift in Sources */,
 				37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */,
 				377A8A082178717E007ABCCE /* LXPlayerView.swift in Sources */,
 				37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */,
