@@ -19,7 +19,7 @@ import Foundation
     
     @objc optional func subtitleSelected(subtitle : String)
 }
-@objc protocol LXTransportProtocol  {
+protocol LXTransportProtocol : class  {
     
 //    weak var delegate : LXTransportDelegate?{get set}
     func playbackComplete()

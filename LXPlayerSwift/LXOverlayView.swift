@@ -8,19 +8,20 @@
 
 import UIKit
 
-class LXOverlayView: UIView {
+class LXOverlayView: UIView ,LXTransportProtocol{
 
+    
+    @IBOutlet weak var sss: UISlider!
     weak var delegate: LXTransportDelegate?
     
     @IBAction func doneButtonClicked(_ sender: Any) {
-        
+        delegate?.play()
     }
     @IBAction func showButtonClicked(_ sender: Any) {
-        
+        delegate?.play()
     }
     @IBAction func showPopupUI(_ sender: UISlider) {
-//        setScrubbingTime(time: TimeInterval(sender.value))
-        delegate?.scrubbedToTime(time: TimeInterval(sender.value))
+
 
     }
     @IBAction func hidePopupUI(_ sender: UISlider) {
@@ -30,8 +31,7 @@ class LXOverlayView: UIView {
 
     }
     @IBAction func unhidePopupUI(_ sender: UISlider) {
-//        setScrubbingTime(time: TimeInterval(sender.value))
-        delegate?.scrubbedToTime(time: TimeInterval(sender.value))
+
     }
     
     
@@ -46,7 +46,10 @@ class LXOverlayView: UIView {
 
     }
     func setCurrentTime(time : TimeInterval,  duration : TimeInterval){
-
+        self.sss.minimumValue = 0.0
+        self.sss.maximumValue = Float(duration)
+        self.sss.value = Float(time)
+        
     }
     func setScrubbingTime(time : TimeInterval){
 

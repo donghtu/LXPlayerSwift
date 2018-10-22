@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/LXPlayerController.swift"
-            timestampString = "561637809.0439579"
+            timestampString = "561890776.589344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/ViewController.swift"
-            timestampString = "561637809.044733"
+            timestampString = "561890776.589776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,44 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/LXOverlayView.swift"
-            timestampString = "561637809.044934"
+            timestampString = "561894919.159417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "unhidePopupUI(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LXPlayerSwift/LXPlayerController.swift"
-            timestampString = "561637809.045187"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "prepareToPlay()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LXPlayerSwift/LXPlayerController.swift"
-            timestampString = "561637809.045559"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "prepareToPlay()"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "hidePopupUI(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -100,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/LXOverlayView.swift"
-            timestampString = "561637809.045903"
+            timestampString = "561894919.160601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -115,46 +83,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LXPlayerSwift/LXPlayerView.swift"
-            timestampString = "561637809.045974"
+            filePath = "LXPlayerSwift/LXOverlayView.swift"
+            timestampString = "561894919.161461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "LXPlayerView"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LXPlayerSwift.LXPlayerView.overlayView.getter : Swift.Optional&lt;LXPlayerSwift.LXOverlayView&gt;"
-                  moduleName = "LXPlayerSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/donglingxiao/Documents/GitHub/LXPlayerSwift/LXPlayerSwift/LXPlayerView.swift"
-                  timestampString = "561637625.0855581"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "114">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LXPlayerSwift.LXPlayerView.overlayView.setter : Swift.Optional&lt;LXPlayerSwift.LXOverlayView&gt;"
-                  moduleName = "LXPlayerSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/donglingxiao/Documents/GitHub/LXPlayerSwift/LXPlayerSwift/LXPlayerView.swift"
-                  timestampString = "561637625.0879461"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "128">
-               </Location>
-            </Locations>
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "doneButtonClicked(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -163,13 +99,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LXPlayerSwift/LXPlayerView.swift"
-            timestampString = "561637809.046259"
+            filePath = "LXPlayerSwift/LXOverlayView.swift"
+            timestampString = "561894919.161831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "init(player:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "doneButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

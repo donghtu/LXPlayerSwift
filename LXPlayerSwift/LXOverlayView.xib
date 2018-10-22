@@ -62,6 +62,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="AkZ-Bw-qMr" secondAttribute="bottom" constant="14" id="vmT-5H-K7l"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="sss" destination="AkZ-Bw-qMr" id="NKL-gx-O5F"/>
+            </connections>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
         </view>
     </objects>

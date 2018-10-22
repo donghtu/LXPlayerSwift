@@ -16,15 +16,14 @@ class LXPlayerView: UIView, LXTransportDelegate {
 //            return self.overlayView
 //        }
 //    }
-    weak var delegate : LXTransportDelegate?
-    var overlayView : LXOverlayView! = (Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as! LXOverlayView)
-//    lazy var overlayView : LXOverlayView! = {
-//        let over  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last
-////        overlayView = over as? LXOverlayView
-////        over.backgroundColor = UIColor.init(white: 1, alpha: 0)
-//
-//        return over as? LXOverlayView
-//    }()
+//    weak var delegate : LXTransportDelegate?
+//    var overlayView : LXOverlayView!
+//    var overlayView : LXOverlayView! = (Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as! LXOverlayView)
+    lazy var overlayView : LXOverlayView! = {
+        let overlayView  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as! LXOverlayView
+        overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        return overlayView
+    }()
     override class var layerClass : AnyClass {
         return AVPlayerLayer.self
         
@@ -39,10 +38,10 @@ class LXPlayerView: UIView, LXTransportDelegate {
         
 //        overlayView = (Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as! LXOverlayView)
         overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
-        
+
         self.addSubview(overlayView!)
 //        overlayView.delegate = delegate
-        print("")
+//        print("")
     }
     
     func play(){
