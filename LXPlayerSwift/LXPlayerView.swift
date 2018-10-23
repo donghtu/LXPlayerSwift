@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class LXPlayerView: UIView, LXTransportDelegate {
+class LXPlayerView: UIView {
     
 //    weak var transport : LXTransportProtocol?{
 //        get{
@@ -35,37 +35,30 @@ class LXPlayerView: UIView, LXTransportDelegate {
         self.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
         let layer = self.layer as! AVPlayerLayer
         layer.player = player
-        
-//        overlayView = (Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as! LXOverlayView)
         overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
-
         self.addSubview(overlayView!)
-//        overlayView.delegate = delegate
-//        print("")
+        let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        self.addGestureRecognizer(gestureRecog)
+        UIView.animate(withDuration: 3.0) {
+            self.overlayView.alpha = 0.0
+
+        }
     }
     
-    func play(){
-        
+    @objc func tapAction() {
+        print("tap +++")
+        UIView.animate(withDuration: 3.0, animations: {
+            
+        }, completion: { (iscomplete) in
+            self.overlayView.alpha = 1.0
+            if iscomplete {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                     self.overlayView.alpha = 0.0
+                })
+            }
+        })
     }
-    func pause(){
-        
-    }
-    func stop(){
-        
-    }
-    func scrubbingDidStart(){
-        
-    }
-    func scrubbedToTime(time : TimeInterval){
-        print("滑动视频")
-        //        player.seek(to: CMTimeMakeWithSeconds(time, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
-    }
-    func scrubbingDidEnd(){
-        
-    }
-    func jumpedToTime(time : TimeInterval){
-        
-    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         overlayView?.frame = self.bounds

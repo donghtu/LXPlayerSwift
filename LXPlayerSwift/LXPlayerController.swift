@@ -11,7 +11,7 @@ import AVFoundation
 
 class LXPlayerController: NSObject {
     let STATUS_KEYPATH = "status"
-
+    let REFRESH_INTERVAL = 0.5
     var view : UIView{
         get{
             return playerView
@@ -66,7 +66,16 @@ extension LXPlayerController : LXTransportDelegate{
             }
         }
     }
-
+    
+    func addPlayerItemTimeObserver() {
+        let interval = CMTimeMakeWithSeconds(REFRESH_INTERVAL, Int32(NSEC_PER_SEC))
+        let callback = {[unowned self] (time :CMTime) -> Void  in
+            let currentTime = CMTimeGetSeconds(time)
+            self.playerView.overlayView.setCurrentTime(time: currentTime, duration: currentTime)
+            }
+        self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback)
+    }
+    //MARK: - LXTransportDelegate
     func play(){
          print("点击确认按钮")
     }

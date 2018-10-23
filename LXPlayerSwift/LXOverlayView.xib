@@ -65,7 +65,7 @@
             <connections>
                 <outlet property="sss" destination="AkZ-Bw-qMr" id="NKL-gx-O5F"/>
             </connections>
-            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+            <point key="canvasLocation" x="51" y="-1"/>
         </view>
     </objects>
 </document>
