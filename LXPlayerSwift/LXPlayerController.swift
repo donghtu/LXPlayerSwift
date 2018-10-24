@@ -59,6 +59,7 @@ extension LXPlayerController : LXTransportDelegate{
                     self.playerView.overlayView.setCurrentTime(time: CMTimeGetSeconds(kCMTimeZero), duration: CMTimeGetSeconds(duration))
                     self.addPlayerItemTimeObserver()
                     self.player.play()
+                    self.loadMediaOptions()
                     print("播放")
                 }else {
                     print("出错了")
@@ -81,11 +82,12 @@ extension LXPlayerController : LXTransportDelegate{
         let mc = AVMediaCharacteristic.legible
         let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: mc)
         if (group != nil) {
-            var subtitles : [String]
+            var subtitles = [String]()
             for option : AVMediaSelectionOption in (group?.options)!
             {
-//                subtitles.append(option.displayName)
+                subtitles.append(option.displayName)
             }
+            print("媒体信息\(subtitles)")
         }
     }
     //MARK: - LXTransportDelegate
