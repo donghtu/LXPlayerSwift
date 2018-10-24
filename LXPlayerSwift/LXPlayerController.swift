@@ -57,6 +57,7 @@ extension LXPlayerController : LXTransportDelegate{
                 if self.playerItem.status == AVPlayerItemStatus.readyToPlay {
                     let duration : CMTime = self.playerItem.duration
                     self.playerView.overlayView.setCurrentTime(time: CMTimeGetSeconds(kCMTimeZero), duration: CMTimeGetSeconds(duration))
+                    self.addPlayerItemTimeObserver()
                     self.player.play()
                     print("播放")
                 }else {
@@ -71,9 +72,21 @@ extension LXPlayerController : LXTransportDelegate{
         let interval = CMTimeMakeWithSeconds(REFRESH_INTERVAL, Int32(NSEC_PER_SEC))
         let callback = {[unowned self] (time :CMTime) -> Void  in
             let currentTime = CMTimeGetSeconds(time)
-            self.playerView.overlayView.setCurrentTime(time: currentTime, duration: currentTime)
+            let duration = CMTimeGetSeconds(self.playerItem.duration)
+            self.playerView.overlayView.setCurrentTime(time: currentTime, duration: duration)
             }
         self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback)
+    }
+    func loadMediaOptions() {
+        let mc = AVMediaCharacteristic.legible
+        let group = self.asset.mediaSelectionGroup(forMediaCharacteristic: mc)
+        if (group != nil) {
+            var subtitles : [String]
+            for option : AVMediaSelectionOption in (group?.options)!
+            {
+//                subtitles.append(option.displayName)
+            }
+        }
     }
     //MARK: - LXTransportDelegate
     func play(){
