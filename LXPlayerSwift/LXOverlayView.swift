@@ -11,7 +11,8 @@ import UIKit
 class LXOverlayView: UIView ,LXTransportProtocol{
 
     
-    @IBOutlet weak var sss: UISlider!
+   
+    @IBOutlet weak var slider: UISlider!
     weak var delegate: LXTransportDelegate?
     
     @IBAction func doneButtonClicked(_ sender: Any) {
@@ -38,7 +39,8 @@ class LXOverlayView: UIView ,LXTransportProtocol{
     
     
     func playbackComplete() {
-
+       self.slider.value = 0
+        print("The end")
     }
 
 
@@ -46,9 +48,9 @@ class LXOverlayView: UIView ,LXTransportProtocol{
 
     }
     func setCurrentTime(time : TimeInterval,  duration : TimeInterval){
-        self.sss.minimumValue = 0.0
-        self.sss.maximumValue = Float(duration)
-        self.sss.value = Float(time)
+        self.slider.minimumValue = 0.0
+        self.slider.maximumValue = Float(duration)
+        self.slider.value = Float(time)
         
     }
     func setScrubbingTime(time : TimeInterval){

@@ -22,7 +22,9 @@ class LXPlayerController: NSObject {
     var playerItem : AVPlayerItem!
     var player : AVPlayer!
     var playerView : LXPlayerView!
-    
+    var timeObserver : AnyObject?
+    var itemEndObserver : AnyObject?
+    var imageGenerator  : AVAssetImageGenerator?
     weak var transport : LXTransportProtocol?
     
     init(url :URL){
@@ -39,7 +41,8 @@ class LXPlayerController: NSObject {
         playerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
         player = AVPlayer(playerItem: playerItem)
         playerView = LXPlayerView(player: player)
-        playerView.overlayView.delegate = self
+        self.transport = playerView.overlayView
+        self.transport?.delegate = self
         
     }
 
@@ -56,8 +59,9 @@ extension LXPlayerController : LXTransportDelegate{
             DispatchQueue.main.async {
                 if self.playerItem.status == AVPlayerItemStatus.readyToPlay {
                     let duration : CMTime = self.playerItem.duration
-                    self.playerView.overlayView.setCurrentTime(time: CMTimeGetSeconds(kCMTimeZero), duration: CMTimeGetSeconds(duration))
+                    self.transport?.setCurrentTime(time: CMTimeGetSeconds(kCMTimeZero), duration: CMTimeGetSeconds(duration))
                     self.addPlayerItemTimeObserver()
+                    self.addItemEndObserverForPlayerItem()
                     self.player.play()
                     self.loadMediaOptions()
                     print("播放")
@@ -71,12 +75,24 @@ extension LXPlayerController : LXTransportDelegate{
     
     func addPlayerItemTimeObserver() {
         let interval = CMTimeMakeWithSeconds(REFRESH_INTERVAL, Int32(NSEC_PER_SEC))
-        let callback = {[unowned self] (time :CMTime) -> Void  in
+        let callback = {[unowned self] (time : CMTime) -> Void  in
             let currentTime = CMTimeGetSeconds(time)
             let duration = CMTimeGetSeconds(self.playerItem.duration)
-            self.playerView.overlayView.setCurrentTime(time: currentTime, duration: duration)
+            self.transport?.setCurrentTime(time: currentTime, duration: duration)
             }
         self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback)
+    }
+    func addItemEndObserverForPlayerItem() {
+        let name = Notification.Name.AVPlayerItemDidPlayToEndTime;
+        let callback = {[unowned self] (note : Notification) -> Void in
+            self.player.seek(to: kCMTimeZero, completionHandler: { (finished) in
+                self.transport?.playbackComplete()
+            })
+        }
+        self.itemEndObserver = NotificationCenter.default.addObserver(forName: name, object: self.playerItem, queue: OperationQueue.main, using: callback);
+        
+        
+        
     }
     func loadMediaOptions() {
         let mc = AVMediaCharacteristic.legible
@@ -89,6 +105,18 @@ extension LXPlayerController : LXTransportDelegate{
             }
             print("媒体信息\(subtitles)")
         }
+    }
+    func generateThumbnails (){
+        self.imageGenerator = AVAssetImageGenerator(asset: self.asset)
+        self.imageGenerator?.maximumSize = CGSize(width: 200, height: 0.0)
+        let duration = self.asset.duration
+        var times = [NSValue]()
+        let increment = duration.value / 20
+        let currentValue = 2.0 * Double(duration.timescale)
+//        while currentValue <= duration.value {
+//
+//        }
+        
     }
     //MARK: - LXTransportDelegate
     func play(){

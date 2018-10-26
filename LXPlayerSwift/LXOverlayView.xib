@@ -39,7 +39,7 @@
                         <action selector="showButtonClicked:" destination="-1" eventType="touchUpInside" id="XqM-mI-G8G"/>
                     </connections>
                 </button>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-Bw-qMr">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-Bw-qMr" userLabel="slider">
                     <rect key="frame" x="14" y="332" width="639" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="29" id="GfR-zf-nHz"/>
@@ -63,7 +63,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="sss" destination="AkZ-Bw-qMr" id="NKL-gx-O5F"/>
+                <outlet property="slider" destination="AkZ-Bw-qMr" id="GqC-rX-kgi"/>
             </connections>
             <point key="canvasLocation" x="51" y="-1"/>
         </view>

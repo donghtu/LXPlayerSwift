@@ -21,7 +21,8 @@ import Foundation
 }
 protocol LXTransportProtocol : class  {
     
-//    weak var delegate : LXTransportDelegate?{get set}
+    var delegate : LXTransportDelegate?{get set}
+    
     func playbackComplete()
     
     func setTitle(title : String)
