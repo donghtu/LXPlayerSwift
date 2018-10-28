@@ -11,6 +11,7 @@ import AVFoundation
 
 class LXPlayerController: NSObject {
     let STATUS_KEYPATH = "status"
+//    class let LXThumbnailsGeneratedNotification = "LXThumbnailsGeneratedNotification";
     let REFRESH_INTERVAL = 0.5
     var view : UIView{
         get{
@@ -48,6 +49,11 @@ class LXPlayerController: NSObject {
 
     deinit {
         self.playerItem.removeObserver(self, forKeyPath: self.STATUS_KEYPATH)
+        if (self.itemEndObserver != nil) {
+            let nc = NotificationCenter.default
+            nc.removeObserver(self.itemEndObserver!, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
+        }
+    
     }
 }
 extension LXPlayerController : LXTransportDelegate{
@@ -112,10 +118,33 @@ extension LXPlayerController : LXTransportDelegate{
         let duration = self.asset.duration
         var times = [NSValue]()
         let increment = duration.value / 20
-        let currentValue = 2.0 * Double(duration.timescale)
-//        while currentValue <= duration.value {
-//
-//        }
+        var currentValue = 2 * Int64(duration.timescale)
+        while currentValue <= Int64(duration.value) {
+             let time = CMTimeMake(currentValue, duration.timescale)
+             times.append(NSValue(time: time))
+             currentValue += increment
+        }
+        var imageCount = times.count
+        var images = [LXThumbnail]()
+        let handler : AVAssetImageGeneratorCompletionHandler
+        handler = {(requestTime: CMTime, imageRef : CGImage, actualTime : CMTime, result : AVAssetImageGeneratorResult, error : NSError) -> Void in
+            if result == AVAssetImageGeneratorResult.succeeded {
+                let image = UIImage(cgImage: imageRef)
+                
+                let thumbnail = LXThumbnail.init(image: image, time: actualTime)
+                images.append(thumbnail)
+                
+            }else {
+                print("Error: \(error.localizedDescription)")
+            }
+            imageCount -= 1
+            if (imageCount == 0) {
+                DispatchQueue.main.async {
+//                    let name = LXThumbnailsGeneratedNotificationstaat
+//                    NotificationCenter.default.post(name: name, object: images)
+                }
+            }
+        } as! AVAssetImageGeneratorCompletionHandler
         
     }
     //MARK: - LXTransportDelegate
