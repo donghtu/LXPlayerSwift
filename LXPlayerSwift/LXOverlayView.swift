@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import CoreMedia
 
 class LXOverlayView: UIView ,LXTransportProtocol{
 
     
-   
+    @IBOutlet weak var showButton: UIButton!
+    
+
+    @IBOutlet weak var filmStripView: LXFilmStripView!
     @IBOutlet weak var slider: UISlider!
     weak var delegate: LXTransportDelegate?
-    
+    var filmStripHidden = true
     @IBAction func doneButtonClicked(_ sender: Any) {
         delegate?.play()
     }
     @IBAction func showButtonClicked(_ sender: Any) {
-        delegate?.play()
+        UIView.animate(withDuration: 0.35, animations: {
+            self.filmStripView.isHidden = false
+            var frame = self.filmStripView.frame
+            frame.origin.y = 0
+            self.filmStripView.frame = frame
+        }) { (complete) in
+            self.filmStripView.isHidden = false;
+        }
+        self.showButton.isSelected = !self.showButton.isSelected
     }
     @IBAction func showPopupUI(_ sender: UISlider) {
 
@@ -58,5 +70,8 @@ class LXOverlayView: UIView ,LXTransportProtocol{
     }
     func setSubtitles(subtitles : [String]){
 
+    }
+    func setCurrentTime(time : TimeInterval){
+        delegate?.jumpedToTime(time: time)
     }
 }

@@ -54,6 +54,8 @@ class LXPlayerView: UIView {
             if iscomplete {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                      self.overlayView.alpha = 0.0
+                    self.overlayView.filmStripView.isHidden = true
+                    self.overlayView.showButton.isSelected = false
                 })
             }
         })

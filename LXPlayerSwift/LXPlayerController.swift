@@ -9,9 +9,11 @@
 import UIKit
 import AVFoundation
 
+
+
 class LXPlayerController: NSObject {
     let STATUS_KEYPATH = "status"
-//    class let LXThumbnailsGeneratedNotification = "LXThumbnailsGeneratedNotification";
+    
     let REFRESH_INTERVAL = 0.5
     var view : UIView{
         get{
@@ -70,6 +72,7 @@ extension LXPlayerController : LXTransportDelegate{
                     self.addItemEndObserverForPlayerItem()
                     self.player.play()
                     self.loadMediaOptions()
+                    self.generateThumbnails()
                     print("播放")
                 }else {
                     print("出错了")
@@ -126,27 +129,28 @@ extension LXPlayerController : LXTransportDelegate{
         }
         var imageCount = times.count
         var images = [LXThumbnail]()
-        let handler : AVAssetImageGeneratorCompletionHandler
-        handler = {(requestTime: CMTime, imageRef : CGImage, actualTime : CMTime, result : AVAssetImageGeneratorResult, error : NSError) -> Void in
+        
+        self.imageGenerator?.generateCGImagesAsynchronously(forTimes: times, completionHandler: { (requestTime, imageRef, actualTime, result, error) in
             if result == AVAssetImageGeneratorResult.succeeded {
-                let image = UIImage(cgImage: imageRef)
+                let image = UIImage(cgImage: imageRef!)
                 
                 let thumbnail = LXThumbnail.init(image: image, time: actualTime)
                 images.append(thumbnail)
                 
             }else {
-                print("Error: \(error.localizedDescription)")
+                print("Error: \(error!.localizedDescription)")
             }
             imageCount -= 1
             if (imageCount == 0) {
                 DispatchQueue.main.async {
-//                    let name = LXThumbnailsGeneratedNotificationstaat
-//                    NotificationCenter.default.post(name: name, object: images)
+                    let name = LXThumbnailsGeneratedNotification
+                    NotificationCenter.default.post(name: name, object: images)
                 }
             }
-        } as! AVAssetImageGeneratorCompletionHandler
-        
+        })
     }
+//        self.imageGenerator?.generateCGImagesAsynchronously(forTimes: times, completionHandler: handler as! AVAssetImageGeneratorCompletionHandler)
+        
     //MARK: - LXTransportDelegate
     func play(){
          print("点击确认按钮")
@@ -162,13 +166,14 @@ extension LXPlayerController : LXTransportDelegate{
     }
     func scrubbedToTime(time : TimeInterval){
         print("滑动视频")
+        playerItem.cancelPendingSeeks()
         player.seek(to: CMTimeMakeWithSeconds(time, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
     }
     func scrubbingDidEnd(){
 
     }
     func jumpedToTime(time : TimeInterval){
-
+        player.seek(to: CMTimeMakeWithSeconds(time, Int32(NSEC_PER_SEC)))
     }
 
 }
