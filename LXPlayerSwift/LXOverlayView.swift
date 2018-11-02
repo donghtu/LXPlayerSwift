@@ -11,16 +11,19 @@ import CoreMedia
 
 class LXOverlayView: UIView ,LXTransportProtocol{
 
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var restTimeLabel: UILabel!
     
     @IBOutlet weak var showButton: UIButton!
     
 
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var filmStripView: LXFilmStripView!
     @IBOutlet weak var slider: UISlider!
     weak var delegate: LXTransportDelegate?
     var filmStripHidden = true
     @IBAction func doneButtonClicked(_ sender: Any) {
-        delegate?.play()
+        delegate?.stop()
     }
     @IBAction func showButtonClicked(_ sender: Any) {
         UIView.animate(withDuration: 0.35, animations: {
@@ -33,20 +36,38 @@ class LXOverlayView: UIView ,LXTransportProtocol{
         }
         self.showButton.isSelected = !self.showButton.isSelected
     }
+    @IBAction func playButtonClicked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if (self.delegate != nil) {
+            if sender.isSelected {
+                self.delegate?.play()
+            }else {
+                self.delegate?.pause()
+            }
+        }
+    }
     @IBAction func showPopupUI(_ sender: UISlider) {
-
-
+        self.currentTimeLabel.text = "-- : --"
+        self.restTimeLabel.text = "-- : --"
+        delegate?.scrubbedToTime(time: TimeInterval(sender.value))
     }
     @IBAction func hidePopupUI(_ sender: UISlider) {
 //        setScrubbingTime(time: TimeInterval(sender.value))
-        print("kkkkk")
-        delegate?.scrubbedToTime(time: TimeInterval(sender.value))
+        print("touch up inside")
+        delegate?.scrubbingDidEnd()
 
     }
     @IBAction func unhidePopupUI(_ sender: UISlider) {
-
+        print("touch down")
+        delegate?.scrubbingDidStart()
     }
     
+    @IBAction func fullscreen(_ sender: UIButton) {
+        print("点击屏幕按钮")
+        sender.isSelected = !sender.isSelected
+        NotificationCenter.default.post(name: LXPlayerFullScreenNotification, object: sender.isSelected)
+        
+    }
     
     
     
@@ -63,7 +84,10 @@ class LXOverlayView: UIView ,LXTransportProtocol{
         self.slider.minimumValue = 0.0
         self.slider.maximumValue = Float(duration)
         self.slider.value = Float(time)
-        
+        let currentTime : Int = Int(ceil(time))
+        let restTime = Int(duration - time)
+        self.currentTimeLabel.text = formatSeconds(value: currentTime)
+        self.restTimeLabel.text = formatSeconds(value: restTime)
     }
     func setScrubbingTime(time : TimeInterval){
 
@@ -73,5 +97,11 @@ class LXOverlayView: UIView ,LXTransportProtocol{
     }
     func setCurrentTime(time : TimeInterval){
         delegate?.jumpedToTime(time: time)
+    }
+    
+    func formatSeconds(value : Int) -> String {
+        let seconds = value % 60
+        let minutes = value / 60
+        return String(format: "%02d:%02d", minutes,seconds)
     }
 }

@@ -9,8 +9,6 @@
 import UIKit
 import AVFoundation
 
-
-
 class LXPlayerController: NSObject {
     let STATUS_KEYPATH = "status"
     
@@ -20,7 +18,8 @@ class LXPlayerController: NSObject {
             return playerView
         }
     }
-    
+    var delayAnimation = false
+    var lastPlaybackRate : Float?
     var asset : AVAsset!
     var playerItem : AVPlayerItem!
     var player : AVPlayer!
@@ -44,6 +43,8 @@ class LXPlayerController: NSObject {
         playerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
         player = AVPlayer(playerItem: playerItem)
         playerView = LXPlayerView(player: player)
+        let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        playerView.addGestureRecognizer(gestureRecog)
         self.transport = playerView.overlayView
         self.transport?.delegate = self
         
@@ -70,7 +71,7 @@ extension LXPlayerController : LXTransportDelegate{
                     self.transport?.setCurrentTime(time: CMTimeGetSeconds(kCMTimeZero), duration: CMTimeGetSeconds(duration))
                     self.addPlayerItemTimeObserver()
                     self.addItemEndObserverForPlayerItem()
-                    self.player.play()
+                    //self.player.play()
                     self.loadMediaOptions()
                     self.generateThumbnails()
                     print("播放")
@@ -89,7 +90,7 @@ extension LXPlayerController : LXTransportDelegate{
             let duration = CMTimeGetSeconds(self.playerItem.duration)
             self.transport?.setCurrentTime(time: currentTime, duration: duration)
             }
-        self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback)
+        self.timeObserver = self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback) as AnyObject
     }
     func addItemEndObserverForPlayerItem() {
         let name = Notification.Name.AVPlayerItemDidPlayToEndTime;
@@ -149,31 +150,58 @@ extension LXPlayerController : LXTransportDelegate{
             }
         })
     }
-//        self.imageGenerator?.generateCGImagesAsynchronously(forTimes: times, completionHandler: handler as! AVAssetImageGeneratorCompletionHandler)
         
     //MARK: - LXTransportDelegate
     func play(){
-         print("点击确认按钮")
+        self.player.play()
     }
     func pause(){
-
+        self.lastPlaybackRate = self.player.rate
+        self.player.pause()
     }
     func stop(){
-
+        self.player.rate = 0.0
+        self.player.pause()
     }
     func scrubbingDidStart(){
-
+        self.delayAnimation = true
+        self.lastPlaybackRate = self.player.rate
+        self.player.removeTimeObserver(self.timeObserver!)
+        self.timeObserver = nil
     }
     func scrubbedToTime(time : TimeInterval){
-        print("滑动视频")
         playerItem.cancelPendingSeeks()
         player.seek(to: CMTimeMakeWithSeconds(time, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
     }
     func scrubbingDidEnd(){
-
+        self.delayAnimation = false
+        self.delayAnimationAction()
+        addPlayerItemTimeObserver()
+        if self.lastPlaybackRate! > Float(0.0) {
+            self.player.play()
+        }
     }
     func jumpedToTime(time : TimeInterval){
         player.seek(to: CMTimeMakeWithSeconds(time, Int32(NSEC_PER_SEC)))
     }
+    @objc func tapAction() {
+        UIView.animate(withDuration: 3.0, animations: {
 
+        }, completion: { (iscomplete) in
+            self.playerView.overlayView.alpha = 1.0
+            if iscomplete {
+                self.delayAnimationAction()
+            }
+        })
+    }
+    func delayAnimationAction() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            if(!self.delayAnimation && self.playerView.overlayView.alpha != 0.0){
+                self.playerView.overlayView.alpha = 0.0
+                self.playerView.overlayView.filmStripView.isHidden = true
+                self.playerView.overlayView.showButton.isSelected = false
+            }
+            
+        })
+    }
 }
