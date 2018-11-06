@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		372799BB217974EA00261A99 /* LXOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372799BA217974EA00261A99 /* LXOverlayView.swift */; };
 		372799C62179A6DC00261A99 /* LXOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 372799C52179A6DC00261A99 /* LXOverlayView.xib */; };
+		3728DFC72190347E00A890B5 /* LXPlayerVideoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728DFC62190347E00A890B5 /* LXPlayerVideoRequest.swift */; };
+		372A3FB1219133FF00B1E4FE /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372A3FB0219133FF00B1E4FE /* VideoModel.swift */; };
+		372A3FB321918D7900B1E4FE /* LXVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372A3FB221918D7900B1E4FE /* LXVideoTableViewCell.swift */; };
 		3746725F2186D73C009CDBC2 /* LXFilmStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746725E2186D73C009CDBC2 /* LXFilmStripView.swift */; };
-		374672612186E1E2009CDBC2 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374672602186E1E2009CDBC2 /* Const.swift */; };
+		374672612186E1E2009CDBC2 /* LXConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374672602186E1E2009CDBC2 /* LXConst.swift */; };
 		376D445A21774171008EC6FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D445921774171008EC6FB /* AppDelegate.swift */; };
 		376D445C21774171008EC6FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376D445B21774171008EC6FB /* ViewController.swift */; };
 		376D445F21774171008EC6FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376D445D21774171008EC6FB /* Main.storyboard */; };
@@ -20,15 +23,18 @@
 		377A8A0B21787BA1007ABCCE /* hubblecast.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 377A8A0A21787BA1007ABCCE /* hubblecast.m4v */; };
 		37A0ABCA21840AA2000A9B8E /* LXThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A0ABC921840AA2000A9B8E /* LXThumbnail.swift */; };
 		37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */; };
-		37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */; };
 		37CD1A22217825EB00EC1A05 /* LXTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CD1A21217825EB00EC1A05 /* LXTransport.swift */; };
+		C35D3DB62F9DA3065D961E14 /* Pods_LXPlayerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A37BDF383C095E8060013F /* Pods_LXPlayerSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		372799BA217974EA00261A99 /* LXOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOverlayView.swift; sourceTree = "<group>"; };
 		372799C52179A6DC00261A99 /* LXOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXOverlayView.xib; sourceTree = "<group>"; };
+		3728DFC62190347E00A890B5 /* LXPlayerVideoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPlayerVideoRequest.swift; sourceTree = "<group>"; };
+		372A3FB0219133FF00B1E4FE /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		372A3FB221918D7900B1E4FE /* LXVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXVideoTableViewCell.swift; sourceTree = "<group>"; };
 		3746725E2186D73C009CDBC2 /* LXFilmStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFilmStripView.swift; sourceTree = "<group>"; };
-		374672602186E1E2009CDBC2 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		374672602186E1E2009CDBC2 /* LXConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXConst.swift; sourceTree = "<group>"; };
 		376D445621774171008EC6FB /* LXPlayerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXPlayerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		376D445921774171008EC6FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		376D445B21774171008EC6FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,8 +46,10 @@
 		377A8A0A21787BA1007ABCCE /* hubblecast.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = hubblecast.m4v; sourceTree = "<group>"; };
 		37A0ABC921840AA2000A9B8E /* LXThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXThumbnail.swift; sourceTree = "<group>"; };
 		37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPlayerController.swift; sourceTree = "<group>"; };
-		37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPLayerViewController.swift; sourceTree = "<group>"; };
 		37CD1A21217825EB00EC1A05 /* LXTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTransport.swift; sourceTree = "<group>"; };
+		94A37BDF383C095E8060013F /* Pods_LXPlayerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXPlayerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAB4732A3E512F76AD87F8B5 /* Pods-LXPlayerSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXPlayerSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXPlayerSwift/Pods-LXPlayerSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		EEAFA700C56D2972C32C477E /* Pods-LXPlayerSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXPlayerSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LXPlayerSwift/Pods-LXPlayerSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +57,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35D3DB62F9DA3065D961E14 /* Pods_LXPlayerSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3728DFC52190341100A890B5 /* LXPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				374672602186E1E2009CDBC2 /* LXConst.swift */,
+				37A0ABC921840AA2000A9B8E /* LXThumbnail.swift */,
+				37CD1A21217825EB00EC1A05 /* LXTransport.swift */,
+				37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */,
+				3746725E2186D73C009CDBC2 /* LXFilmStripView.swift */,
+				372799BA217974EA00261A99 /* LXOverlayView.swift */,
+				372799C52179A6DC00261A99 /* LXOverlayView.xib */,
+				377A8A072178717E007ABCCE /* LXPlayerView.swift */,
+			);
+			path = LXPlayer;
+			sourceTree = "<group>";
+		};
 		376D444D21774171008EC6FB = {
 			isa = PBXGroup;
 			children = (
 				376D445821774171008EC6FB /* LXPlayerSwift */,
 				376D445721774171008EC6FB /* Products */,
+				F47F4FADA0E0365E0FA225F5 /* Pods */,
+				46F38BBDA118A728A2BC3014 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,18 +100,13 @@
 		376D445821774171008EC6FB /* LXPlayerSwift */ = {
 			isa = PBXGroup;
 			children = (
+				3728DFC52190341100A890B5 /* LXPlayer */,
 				376D445921774171008EC6FB /* AppDelegate.swift */,
-				374672602186E1E2009CDBC2 /* Const.swift */,
-				37A0ABC921840AA2000A9B8E /* LXThumbnail.swift */,
 				376D445B21774171008EC6FB /* ViewController.swift */,
-				37CD1A21217825EB00EC1A05 /* LXTransport.swift */,
+				372A3FB221918D7900B1E4FE /* LXVideoTableViewCell.swift */,
+				3728DFC62190347E00A890B5 /* LXPlayerVideoRequest.swift */,
+				372A3FB0219133FF00B1E4FE /* VideoModel.swift */,
 				376D445D21774171008EC6FB /* Main.storyboard */,
-				37CD1A1B2178229F00EC1A05 /* LXPlayerController.swift */,
-				3746725E2186D73C009CDBC2 /* LXFilmStripView.swift */,
-				372799BA217974EA00261A99 /* LXOverlayView.swift */,
-				372799C52179A6DC00261A99 /* LXOverlayView.xib */,
-				377A8A072178717E007ABCCE /* LXPlayerView.swift */,
-				37CD1A1C217822A000EC1A05 /* LXPLayerViewController.swift */,
 				377A8A0921787B5C007ABCCE /* Supporting Files */,
 				376D446021774172008EC6FB /* Assets.xcassets */,
 				376D446221774172008EC6FB /* LaunchScreen.storyboard */,
@@ -102,6 +123,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		46F38BBDA118A728A2BC3014 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94A37BDF383C095E8060013F /* Pods_LXPlayerSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F47F4FADA0E0365E0FA225F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DAB4732A3E512F76AD87F8B5 /* Pods-LXPlayerSwift.debug.xcconfig */,
+				EEAFA700C56D2972C32C477E /* Pods-LXPlayerSwift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +147,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 376D446821774172008EC6FB /* Build configuration list for PBXNativeTarget "LXPlayerSwift" */;
 			buildPhases = (
+				F56CD525865A93D6CF3A01FE /* [CP] Check Pods Manifest.lock */,
 				376D445221774171008EC6FB /* Sources */,
 				376D445321774171008EC6FB /* Frameworks */,
 				376D445421774171008EC6FB /* Resources */,
+				1B475FED58DF7443F4DBB6FD /* [CP] Embed Pods Frameworks */,
+				A3F232C060248CBD65B00ED4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,21 +211,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B475FED58DF7443F4DBB6FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LXPlayerSwift/Pods-LXPlayerSwift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LXPlayerSwift/Pods-LXPlayerSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3F232C060248CBD65B00ED4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LXPlayerSwift/Pods-LXPlayerSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F56CD525865A93D6CF3A01FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LXPlayerSwift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		376D445221774171008EC6FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3728DFC72190347E00A890B5 /* LXPlayerVideoRequest.swift in Sources */,
 				376D445C21774171008EC6FB /* ViewController.swift in Sources */,
 				376D445A21774171008EC6FB /* AppDelegate.swift in Sources */,
 				372799BB217974EA00261A99 /* LXOverlayView.swift in Sources */,
 				37CD1A1D217822A000EC1A05 /* LXPlayerController.swift in Sources */,
 				37A0ABCA21840AA2000A9B8E /* LXThumbnail.swift in Sources */,
 				377A8A082178717E007ABCCE /* LXPlayerView.swift in Sources */,
+				372A3FB1219133FF00B1E4FE /* VideoModel.swift in Sources */,
 				3746725F2186D73C009CDBC2 /* LXFilmStripView.swift in Sources */,
-				37CD1A1E217822A000EC1A05 /* LXPLayerViewController.swift in Sources */,
 				37CD1A22217825EB00EC1A05 /* LXTransport.swift in Sources */,
-				374672612186E1E2009CDBC2 /* Const.swift in Sources */,
+				374672612186E1E2009CDBC2 /* LXConst.swift in Sources */,
+				372A3FB321918D7900B1E4FE /* LXVideoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,15 +427,13 @@
 		};
 		376D446921774172008EC6FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAB4732A3E512F76AD87F8B5 /* Pods-LXPlayerSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4J7RRKT8QM;
 				INFOPLIST_FILE = LXPlayerSwift/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donglingxiao.test.LXPlayerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -344,15 +443,13 @@
 		};
 		376D446A21774172008EC6FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEAFA700C56D2972C32C477E /* Pods-LXPlayerSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4J7RRKT8QM;
 				INFOPLIST_FILE = LXPlayerSwift/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.donglingxiao.test.LXPlayerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
