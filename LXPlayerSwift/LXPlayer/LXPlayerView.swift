@@ -21,14 +21,15 @@ class LXPlayerView: UIView {
         
     }
     
-    init(player : AVPlayer){
-        super.init(frame : CGRect.zero)
+    init(player : AVPlayer ,frame: CGRect){
+        
+        super.init(frame : frame)
         self.backgroundColor = .black
         self.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
         let layer = self.layer as! AVPlayerLayer
         layer.player = player
-        overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
-        self.addSubview(overlayView!)
+        self.overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
+        self.addSubview(self.overlayView!)
         NotificationCenter.default.addObserver(self, selector: #selector(fullScreenNotification(notify:)), name: LXPlayerFullScreenNotification, object: nil)
         
         UIView.animate(withDuration: 3.0) {

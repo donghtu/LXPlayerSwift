@@ -8,12 +8,26 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+
+protocol LXVideoCellDelegate : class {
+    func playVideos(button : UIButton)
+}
 
 class LXVideoTableViewCell: UITableViewCell {
 
     var coverView : UIImageView?
     var titleLabel : UILabel?
+    var playButton : UIButton?
+    weak var delegate : LXVideoCellDelegate?
     
+    var videoModel = VideoModel(){
+        didSet {
+            titleLabel?.text = videoModel.title
+            let url = URL(string: videoModel.cover!)
+            coverView?.kf.setImage(with: url)
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,22 +37,32 @@ class LXVideoTableViewCell: UITableViewCell {
    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpUI()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    func setUpUI() {
+        
         self.coverView = UIImageView()
         self.contentView.addSubview(self.coverView!)
         
         self.titleLabel = UILabel()
         self.titleLabel?.backgroundColor = .clear
-        self.titleLabel?.textColor = .black
+        self.titleLabel?.textColor = .white
         self.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
         self.contentView.addSubview(self.titleLabel!)
         
+        self.playButton = UIButton(type: .custom)
+        self.playButton?.setBackgroundImage(UIImage(named: "play"), for: .normal)
+        self.playButton?.addTarget(self, action: #selector(playVideo(button:)), for: .touchUpInside)
+        self.contentView.addSubview(self.playButton!)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setUpUI()
+    }
+    func setUpUI() {
+
         self.coverView?.snp.makeConstraints({ (make) in
             make.left.equalTo(self.contentView.snp.left)
             make.right.equalTo(self.contentView.snp.right)
@@ -48,11 +72,20 @@ class LXVideoTableViewCell: UITableViewCell {
         
         self.titleLabel?.snp.makeConstraints({ (make) in
             make.top.equalTo(self.contentView.snp.top).offset(5)
-            make.height.equalTo(self.contentView.bounds.height)
+            make.height.equalTo(25)
             make.left.equalTo(self.contentView.snp.left)
             make.right.equalTo(self.contentView.snp.right)
         })
         
+        self.playButton?.snp.makeConstraints { (make) in
+            make.height.equalTo(60)
+            make.width.equalTo(60)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+    @objc func playVideo(button : UIButton){
+        self.delegate?.playVideos(button: button)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
