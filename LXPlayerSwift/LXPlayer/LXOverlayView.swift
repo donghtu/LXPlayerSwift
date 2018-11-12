@@ -81,13 +81,21 @@ class LXOverlayView: UIView ,LXTransportProtocol{
 
     }
     func setCurrentTime(time : TimeInterval,  duration : TimeInterval){
-        self.slider.minimumValue = 0.0
-        self.slider.maximumValue = Float(duration)
-        self.slider.value = Float(time)
-        let currentTime : Int = Int(ceil(time))
-        let restTime = Int(duration - time)
-        self.currentTimeLabel.text = formatSeconds(value: currentTime)
-        self.restTimeLabel.text = formatSeconds(value: restTime)
+        if duration.isNaN{
+            print("NANNANNANNAN")
+            self.currentTimeLabel.text = "--"
+            self.restTimeLabel.text = "--"
+        }else {
+            
+            self.slider.maximumValue = Float(duration)
+            self.slider.minimumValue = 0.0
+            self.slider.value = Float(time)
+            let currentTime : Int = Int(ceil(time))
+            let restTime = Int(duration - time)
+            self.currentTimeLabel.text = formatSeconds(value: currentTime)
+            self.restTimeLabel.text = formatSeconds(value: restTime)
+        }
+        
     }
     func setScrubbingTime(time : TimeInterval){
 

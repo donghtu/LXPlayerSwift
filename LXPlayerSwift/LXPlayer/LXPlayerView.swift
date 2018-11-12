@@ -21,7 +21,7 @@ class LXPlayerView: UIView {
         
     }
     
-    init(player : AVPlayer ,frame: CGRect){
+    init(player : AVPlayer ,frame: CGRect) {
         
         super.init(frame : frame)
         self.backgroundColor = .black
@@ -31,6 +31,7 @@ class LXPlayerView: UIView {
         self.overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
         self.addSubview(self.overlayView!)
         NotificationCenter.default.addObserver(self, selector: #selector(fullScreenNotification(notify:)), name: LXPlayerFullScreenNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(toCell(notify:)), name: LXPlayerSmallToCellNotification, object: nil)
         
         UIView.animate(withDuration: 3.0) {
             self.overlayView.alpha = 0.0
@@ -38,7 +39,7 @@ class LXPlayerView: UIView {
         }
     }
     
-    @objc func fullScreenNotification(notify : NSNotification){
+    @objc func fullScreenNotification(notify : NSNotification) {
         let isSelect : Bool = notify.object as! Bool
         var next : UIResponder?
         next = self.next
@@ -60,7 +61,7 @@ class LXPlayerView: UIView {
         }
     }
 
-    func toFullScreen(orientation : UIInterfaceOrientation){
+    func toFullScreen(orientation : UIInterfaceOrientation) {
         self.removeFromSuperview()
         self.transform = .identity
         if orientation == .landscapeLeft {
@@ -71,7 +72,7 @@ class LXPlayerView: UIView {
         self.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
         UIApplication.shared.keyWindow?.addSubview(self)
     }
-    func toSmallScreen(){
+    func toSmallScreen() {
         self.removeFromSuperview()
         self.transform = .identity
         self.frame = CGRect(x: SCREEN_WIDTH, y: (SCREEN_HEIGHT - (SCREEN_WIDTH/2))/2, width: SCREEN_WIDTH, height: (SCREEN_WIDTH/2))
@@ -79,9 +80,16 @@ class LXPlayerView: UIView {
         UIApplication.shared.keyWindow?.bringSubview(toFront: self)
         UIView.animate(withDuration: 0.5) {
             var rect = self.frame as CGRect
-            rect.origin.x = 0
+            rect.origin.x = SCREEN_WIDTH/3
+            rect.size.width = SCREEN_WIDTH*2/3
             self.frame = rect
         }
+    }
+    @objc func toCell(notify : NSNotification) {
+        let cell = notify.object as! UIView
+        self.removeFromSuperview()
+        cell.addSubview(self)
+        cell.bringSubview(toFront: self)
     }
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     var controller : LXPlayerController?
     var currentCell : LXVideoTableViewCell?
+    var currentIndexPath : IndexPath?
     var isHidden : Bool = false
     var isStatusHidden : Bool {
         get{
@@ -48,8 +49,6 @@ class ViewController: UIViewController {
     @objc func getSIDArray() {
         let url = String("http://c.m.163.com/nc/video/home/\(dataSource.count - dataSource.count%10)-10.html")
         LXPlayerVideoRequest.getSIDArray(urlStr: url) {[unowned self]  (sidArr, videoArr) in
-//            print("回调\(sidArr)\(videoArr)")
-            
             self.dataSource.append(contentsOf: videoArr)
             self.tableView.reloadData()
             self.tableView.mj_footer.endRefreshing()
@@ -76,25 +75,59 @@ class ViewController: UIViewController {
 
 
 }
-extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCellDelegate {
+extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCellDelegate,UIScrollViewDelegate {
+    //MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.tableView{
+            print("滑动了")
+            if currentIndexPath == nil{
+               return
+            }
+            let playerView : UIView = (controller?.playerView)!
+            
+            if playerView.superview != nil{
+                let rectInTableView : CGRect = tableView.rectForRow(at: currentIndexPath!)
+                let rectInSuperView : CGRect = tableView.convert(rectInTableView, to: tableView.superview)
+                if (rectInSuperView.origin.y-64+(currentCell?.bounds.height)! < 0||rectInSuperView.origin.y > self.view.bounds.height){
+                    if UIApplication.shared.keyWindow?.subviews.contains(playerView) == false{
+                        toSmallScreen()
+                    }
+                }else {
+                    if currentCell!.subviews.contains(playerView) == false {
+                        toCell()
+                    }
+                }
+            }
+        }
+    }
+    func toSmallScreen() {
+        print("小图")
+        NotificationCenter.default.post(name: LXPlayerFullScreenNotification, object: false)
+    }
+    func toCell() {
+        print("到cell了")
+        if currentIndexPath != nil {
+            currentCell = tableView.cellForRow(at: currentIndexPath!) as? LXVideoTableViewCell
+            NotificationCenter.default.post(name: LXPlayerSmallToCellNotification, object: currentCell)
+        }
+      
+        
+    }
     
-
+    
+    //MARK: - LXVideoCellDelegate
     func playVideos(button : UIButton) {
         currentCell = tableView.cellForRow(at: IndexPath(row: button.tag, section: 0)) as? LXVideoTableViewCell
+        currentIndexPath = IndexPath(row: button.tag, section: 0)
         let model : VideoModel = dataSource[button.tag]
         if (controller != nil) {
-            print("controller exist")
             let playerView  = controller?.view
             playerView?.removeFromSuperview()
             controller?.videoUrl = URL(string: model.mp4_url!)!
             
         }else{
-//            let localURL = Bundle.main.url(forResource: "hubblecast", withExtension: "m4v")
-            
             let videoUrl = URL(string: model.mp4_url!)
             controller  = LXPlayerController(url: videoUrl!,frame: (currentCell?.bounds)!)
-//            let playerView  = controller?.view
-//            currentCell!.addSubview(playerView!)
         }
         let playerView  = controller?.view
         currentCell!.addSubview(playerView!)
@@ -118,7 +151,6 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
             cell.videoModel = model
             cell.playButton?.tag = indexPath.row
             cell.delegate = self
-//            cell.titleLabel?.text = model.title
         }
         
         return cell
