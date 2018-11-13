@@ -31,7 +31,7 @@ class LXPlayerView: UIView {
         self.overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
         self.addSubview(self.overlayView!)
         NotificationCenter.default.addObserver(self, selector: #selector(fullScreenNotification(notify:)), name: LXPlayerFullScreenNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(toCell(notify:)), name: LXPlayerSmallToCellNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(toCell(notify:)), name: LXPlayerSmallToCellNotification, object: nil)
         
         UIView.animate(withDuration: 3.0) {
             self.overlayView.alpha = 0.0
@@ -86,8 +86,10 @@ class LXPlayerView: UIView {
         }
     }
     @objc func toCell(notify : NSNotification) {
+        print("滚回到实际cell")
         let cell = notify.object as! UIView
         self.removeFromSuperview()
+        self.frame = cell.bounds
         cell.addSubview(self)
         cell.bringSubview(toFront: self)
     }

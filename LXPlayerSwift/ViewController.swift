@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     var controller : LXPlayerController?
     var currentCell : LXVideoTableViewCell?
     var currentIndexPath : IndexPath?
+    var isSmall : Bool = true
     var isHidden : Bool = false
+    var contentOffset : CGPoint?
     var isStatusHidden : Bool {
         get{
             return false
@@ -78,22 +80,28 @@ class ViewController: UIViewController {
 extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCellDelegate,UIScrollViewDelegate {
     //MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var currentOffset : CGPoint!
         if scrollView == self.tableView{
-            print("滑动了")
+            currentOffset =  tableView.contentOffset
+            currentOffset.y += SCREEN_HEIGHT/2
+            let currentIndex : IndexPath = tableView.indexPathForRow(at: currentOffset) ?? IndexPath(row: 1111111, section: 1)
             if currentIndexPath == nil{
-               return
+                return
             }
             let playerView : UIView = (controller?.playerView)!
-            
             if playerView.superview != nil{
                 let rectInTableView : CGRect = tableView.rectForRow(at: currentIndexPath!)
                 let rectInSuperView : CGRect = tableView.convert(rectInTableView, to: tableView.superview)
                 if (rectInSuperView.origin.y-64+(currentCell?.bounds.height)! < 0||rectInSuperView.origin.y > self.view.bounds.height){
-                    if UIApplication.shared.keyWindow?.subviews.contains(playerView) == false{
+                    if UIApplication.shared.keyWindow?.subviews.contains(playerView) == false && isSmall{
+                        print("走了走了")
+                        isSmall = false
                         toSmallScreen()
                     }
                 }else {
-                    if currentCell!.subviews.contains(playerView) == false {
+                    if currentCell!.subviews.contains(playerView) == false && currentIndex == currentIndexPath && isSmall == false{
+                        print("来了")
+                        isSmall = true
                         toCell()
                     }
                 }
@@ -106,9 +114,16 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
     }
     func toCell() {
         print("到cell了")
-        if currentIndexPath != nil {
+        if currentIndexPath != nil && currentCell != nil{
+            let playerView  = controller?.view
+            playerView!.removeFromSuperview()
             currentCell = tableView.cellForRow(at: currentIndexPath!) as? LXVideoTableViewCell
-            NotificationCenter.default.post(name: LXPlayerSmallToCellNotification, object: currentCell)
+            if currentCell != nil {
+                playerView!.frame = currentCell!.bounds
+                
+                currentCell!.addSubview(playerView!)
+            }
+
         }
       
         
@@ -117,6 +132,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
     
     //MARK: - LXVideoCellDelegate
     func playVideos(button : UIButton) {
+        contentOffset = tableView.contentOffset
         currentCell = tableView.cellForRow(at: IndexPath(row: button.tag, section: 0)) as? LXVideoTableViewCell
         currentIndexPath = IndexPath(row: button.tag, section: 0)
         let model : VideoModel = dataSource[button.tag]
