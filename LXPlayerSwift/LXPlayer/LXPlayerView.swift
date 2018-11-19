@@ -9,29 +9,65 @@
 import UIKit
 import AVFoundation
 
+enum LXCoverCategory {
+    case normal
+    case filmStrip
+    case gpuImage
+}
 class LXPlayerView: UIView {
     
     lazy var overlayView : LXOverlayView! = {
-        let overlayView  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as! LXOverlayView
-        overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        let overlayView : LXOverlayView!
+        switch coverCategory! {
+        case .filmStrip:
+            overlayView  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as? LXOverlayView
+            overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        case .gpuImage:
+            overlayView  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as? LXOverlayView
+            overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        default:
+            overlayView  = Bundle.main.loadNibNamed("LXOverlayNormalView", owner: nil, options: nil)?.last as! LXOverlayNormalView
+            overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
+        }
+        
         return overlayView
     }()
+    var coverHidden : Bool? {
+        willSet(newValue){
+            if newValue == true {
+                self.overlayView.alpha = 0.0
+                
+                if self.coverCategory == .filmStrip {
+                    self.overlayView.showButton.isSelected = false
+                    self.overlayView.filmStripView.isHidden = true
+                }
+            }
+        }
+    }
+    var videoTitle : String?{
+        willSet(newValue){
+            if self.coverCategory == .normal {
+                print("视频标题\(String(describing: newValue))")
+                self.overlayView.titleLabel.text = newValue
+            }
+        }
+    }
     override class var layerClass : AnyClass {
         return AVPlayerLayer.self
         
     }
-    
-    init(player : AVPlayer ,frame: CGRect) {
+    var coverCategory : LXCoverCategory!
+    init(player : AVPlayer ,frame: CGRect,category:LXCoverCategory) {
         
         super.init(frame : frame)
         self.backgroundColor = .black
         self.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
+        coverCategory = category
         let layer = self.layer as! AVPlayerLayer
         layer.player = player
         self.overlayView?.backgroundColor = UIColor.init(white: 1, alpha: 0)
         self.addSubview(self.overlayView!)
         NotificationCenter.default.addObserver(self, selector: #selector(fullScreenNotification(notify:)), name: LXPlayerFullScreenNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(toCell(notify:)), name: LXPlayerSmallToCellNotification, object: nil)
         
         UIView.animate(withDuration: 3.0) {
             self.overlayView.alpha = 0.0

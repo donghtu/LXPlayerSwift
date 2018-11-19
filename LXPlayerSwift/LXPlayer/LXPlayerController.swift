@@ -18,6 +18,11 @@ class LXPlayerController: NSObject {
             return playerView
         }
     }
+    var videoTitle : String?{
+        willSet(newValue){
+            self.playerView.videoTitle = newValue
+        }
+    }
     var videoUrl : URL?{
         willSet(newValue){
             print("设置前\(String(describing: newValue))")
@@ -53,11 +58,8 @@ class LXPlayerController: NSObject {
     
     init(url :URL, frame: CGRect){
         super.init()
-//        asset = AVAsset(url: url)
-//        prepareToPlay(frame: frame)
-    
+
         let playerItem = playItem(url: url)
-        //        player.replaceCurrentItem(with: playerItem)
         currentPlayerItem = playerItem
         prepareToPlay(frame: frame)
     }
@@ -74,7 +76,7 @@ class LXPlayerController: NSObject {
     private func prepareToPlay(frame:CGRect) {
         currentPlayerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
         player = AVPlayer(playerItem: currentPlayerItem)
-        playerView = LXPlayerView(player: player,frame:frame)
+        playerView = LXPlayerView(player: player,frame:frame,category:.normal)
         let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         playerView.addGestureRecognizer(gestureRecog)
         self.transport = playerView.overlayView
@@ -198,8 +200,10 @@ extension LXPlayerController : LXTransportDelegate{
     func scrubbingDidStart(){
         self.delayAnimation = true
         self.lastPlaybackRate = self.player.rate
-        self.player.removeTimeObserver(self.timeObserver!)
-        self.timeObserver = nil
+        if self.timeObserver != nil {
+            self.player.removeTimeObserver(self.timeObserver!)
+            self.timeObserver = nil
+        }
     }
     func scrubbedToTime(time : TimeInterval){
         currentPlayerItem.cancelPendingSeeks()
@@ -229,9 +233,8 @@ extension LXPlayerController : LXTransportDelegate{
     func delayAnimationAction() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             if(!self.delayAnimation && self.playerView.overlayView.alpha != 0.0){
-                self.playerView.overlayView.alpha = 0.0
-                self.playerView.overlayView.filmStripView.isHidden = true
-                self.playerView.overlayView.showButton.isSelected = false
+                self.playerView.coverHidden = true
+                
             }
             
         })

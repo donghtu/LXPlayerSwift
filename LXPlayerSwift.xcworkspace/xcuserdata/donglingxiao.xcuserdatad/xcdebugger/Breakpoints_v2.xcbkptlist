@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/ViewController.swift"
-            timestampString = "563794780.216149"
+            timestampString = "564050101.480987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/ViewController.swift"
-            timestampString = "563794780.217145"
+            timestampString = "564050101.481344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/LXPlayer/LXPlayerView.swift"
-            timestampString = "563794780.217644"
+            timestampString = "564050101.481411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "toFullScreen(orientation:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "fullScreenNotification(notify:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/LXPlayer/LXPlayerController.swift"
-            timestampString = "563794780.217972"
+            timestampString = "564050101.4816509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "init(url:frame:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +106,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/LXPlayer/LXPlayerController.swift"
-            timestampString = "563794780.218238"
+            timestampString = "564050101.481926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "init(url:frame:)"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "delayAnimationAction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LXPlayerSwift/LXPlayer/LXOverlayView.swift"
+            timestampString = "564050101.481974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "setCurrentTime(time:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

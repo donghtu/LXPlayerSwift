@@ -137,16 +137,20 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
         currentIndexPath = IndexPath(row: button.tag, section: 0)
         let model : VideoModel = dataSource[button.tag]
         if (controller != nil) {
-            let playerView  = controller?.view
-            playerView?.removeFromSuperview()
+            isSmall = true
+            toCell()
             controller?.videoUrl = URL(string: model.mp4_url!)!
             
         }else{
             let videoUrl = URL(string: model.mp4_url!)
             controller  = LXPlayerController(url: videoUrl!,frame: (currentCell?.bounds)!)
+            
+            let playerView  = controller?.view
+            currentCell!.addSubview(playerView!)
         }
-        let playerView  = controller?.view
-        currentCell!.addSubview(playerView!)
+        
+        controller?.videoTitle = model.title
+        
     }
     
     //MARK: - UITableViewDelegate,UITableViewDataSource
@@ -172,11 +176,13 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+       let cell = tableView.cellForRow(at: indexPath) as? LXVideoTableViewCell
+       cell?.coverView?.isHidden = true
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 128
     }
+    
     
 }
 
