@@ -3,9 +3,6 @@ PODS:
   - HandyJSON (4.2.0)
   - Kingfisher (4.10.0)
   - MJRefresh (3.1.15.7)
-  - RxCocoa (4.3.1):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.3.1)
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
@@ -13,8 +10,6 @@ DEPENDENCIES:
   - HandyJSON (~> 4.2.0)
   - Kingfisher (~> 4.0)
   - MJRefresh
-  - RxCocoa
-  - RxSwift
   - SnapKit (~> 4.0.0)
 
 SPEC CHECKSUMS:
@@ -22,10 +17,8 @@ SPEC CHECKSUMS:
   HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: ee5d7997c5dbb1810872072e1a5a7d1efe20aba4
+PODFILE CHECKSUM: 72dcdc639bd613183ae63eb6f98e1aada1ac669a
 
 COCOAPODS: 1.4.0

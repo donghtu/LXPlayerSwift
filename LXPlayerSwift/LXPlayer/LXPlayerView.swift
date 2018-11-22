@@ -12,7 +12,6 @@ import AVFoundation
 enum LXCoverCategory {
     case normal
     case filmStrip
-    case gpuImage
 }
 class LXPlayerView: UIView {
     
@@ -20,9 +19,6 @@ class LXPlayerView: UIView {
         let overlayView : LXOverlayView!
         switch coverCategory! {
         case .filmStrip:
-            overlayView  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as? LXOverlayView
-            overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
-        case .gpuImage:
             overlayView  = Bundle.main.loadNibNamed("LXOverlayView", owner: nil, options: nil)?.last as? LXOverlayView
             overlayView.backgroundColor = UIColor.init(white: 1, alpha: 1)
         default:
