@@ -119,7 +119,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
             playerView!.removeFromSuperview()
             currentCell = tableView.cellForRow(at: currentIndexPath!) as? LXVideoTableViewCell
             if currentCell != nil {
-                playerView!.frame = currentCell!.bounds
+                playerView!.frame = currentCell!.coverView!.bounds
                 
                 currentCell!.addSubview(playerView!)
             }
@@ -143,7 +143,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
             
         }else{
             let videoUrl = URL(string: model.mp4_url!)
-            controller  = LXPlayerController(url: videoUrl!,frame: (currentCell?.bounds)!)
+            controller  = LXPlayerController(url: videoUrl!,frame: (currentCell?.coverView?.bounds)!)
             
             let playerView  = controller?.view
             currentCell!.addSubview(playerView!)
@@ -180,7 +180,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
        cell?.coverView?.isHidden = true
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 128
+        return 148
     }
     
     

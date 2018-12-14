@@ -19,6 +19,7 @@ class LXVideoTableViewCell: UITableViewCell {
     var coverView : UIImageView?
     var titleLabel : UILabel?
     var playButton : UIButton?
+    var bottomView : UIView?
     weak var delegate : LXVideoCellDelegate?
     
     var videoModel = VideoModel(){
@@ -52,6 +53,9 @@ class LXVideoTableViewCell: UITableViewCell {
         self.playButton?.addTarget(self, action: #selector(playVideo(button:)), for: .touchUpInside)
         self.contentView.addSubview(self.playButton!)
         
+        self.bottomView = UIView()
+        self.bottomView?.backgroundColor = .white
+        self.contentView.addSubview(self.bottomView!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,7 +71,7 @@ class LXVideoTableViewCell: UITableViewCell {
             make.left.equalTo(self.contentView.snp.left)
             make.right.equalTo(self.contentView.snp.right)
             make.top.equalTo(self.contentView.snp.top)
-            make.bottom.equalTo(self.contentView.snp.bottom)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-20)
         })
         
         self.titleLabel?.snp.makeConstraints({ (make) in
@@ -81,8 +85,15 @@ class LXVideoTableViewCell: UITableViewCell {
             make.height.equalTo(60)
             make.width.equalTo(60)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-10)
         }
+        
+        self.bottomView?.snp.makeConstraints({ (make) in
+            make.bottom.equalTo(self.contentView.snp.bottom)
+            make.height.equalTo(20)
+            make.left.equalTo(self.contentView.snp.left)
+            make.right.equalTo(self.contentView.snp.right)
+        })
     }
     @objc func playVideo(button : UIButton){
         self.delegate?.playVideos(button: button)
