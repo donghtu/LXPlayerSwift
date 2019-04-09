@@ -76,7 +76,7 @@ class LXPlayerController: NSObject {
     private func prepareToPlay(frame:CGRect) {
         currentPlayerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
         player = AVPlayer(playerItem: currentPlayerItem)
-        playerView = LXPlayerView(player: player,frame:frame,category:.normal)
+        playerView = LXPlayerView(player: player,frame:frame,category:.filmStrip)
         let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         playerView.addGestureRecognizer(gestureRecog)
         self.transport = playerView.overlayView

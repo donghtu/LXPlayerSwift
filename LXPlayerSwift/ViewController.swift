@@ -92,7 +92,7 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
             if playerView.superview != nil{
                 let rectInTableView : CGRect = tableView.rectForRow(at: currentIndexPath!)
                 let rectInSuperView : CGRect = tableView.convert(rectInTableView, to: tableView.superview)
-                if (rectInSuperView.origin.y-64+(currentCell?.bounds.height)! < 0||rectInSuperView.origin.y > self.view.bounds.height){
+                if (rectInSuperView.origin.y+(currentCell?.bounds.height)! < 0||rectInSuperView.origin.y > self.view.bounds.height){
                     if UIApplication.shared.keyWindow?.subviews.contains(playerView) == false && isSmall{
                         print("走了走了")
                         isSmall = false
@@ -152,9 +152,9 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
 //            let playerView  = controller?.view
 //            currentCell!.addSubview(playerView!)
         }
-//        let playerView  = controller?.view
-//        currentCell!.addSubview(playerView!)
-//        controller?.play()
+        let playerView  = controller?.view
+        currentCell!.addSubview(playerView!)
+        controller?.play()
 //=======
 //            let videoUrl = URL(string: model.mp4_url!)
 //            controller  = LXPlayerController(url: videoUrl!,frame: (currentCell?.coverView?.bounds)!)
