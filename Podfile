@@ -8,6 +8,4 @@ target 'LXPlayerSwift' do
     pod 'SnapKit', '~>4.0.0'
     pod 'Kingfisher', '~>4.0'
     pod 'MJRefresh'
-    pod 'RxSwift'
-    pod 'RxCocoa'
 end

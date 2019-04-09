@@ -18,29 +18,28 @@ class LXPlayerController: NSObject {
             return playerView
         }
     }
+    var videoTitle : String?{
+        willSet(newValue){
+            self.playerView.videoTitle = newValue
+        }
+    }
     var videoUrl : URL?{
         willSet(newValue){
             print("设置前\(String(describing: newValue))")
-            if self.timeObserver != nil {
-                self.view.layer.removeFromSuperlayer()
-                self.player.removeTimeObserver(self.timeObserver!)
-                self.timeObserver = nil
-                currentPlayerItem.removeObserver(self, forKeyPath: self.STATUS_KEYPATH)
-                let nc = NotificationCenter.default
-                nc.removeObserver(self.itemEndObserver!, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
-                self.itemEndObserver = nil
-                currentPlayerItem.cancelPendingSeeks()
-                currentPlayerItem.asset.cancelLoading()
-                self.player.rate = 0.0
-                player.pause()
-
-                let playerItem = playItem(url: newValue!)
-                currentPlayerItem = playerItem
-                player.replaceCurrentItem(with: currentPlayerItem)
-                currentPlayerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
+            let nc = NotificationCenter.default
+            nc.removeObserver(self.itemEndObserver!, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
+            currentPlayerItem.removeObserver(self, forKeyPath: STATUS_KEYPATH)
+            
+            let playerItem = playItem(url: newValue!)
+            currentPlayerItem = playerItem
+            currentPlayerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
+            DispatchQueue.main.async{
+                
+                self.player.replaceCurrentItem(with: self.currentPlayerItem)
             }
             
-            
+            addItemEndObserverForPlayerItem()
+      
         }
         didSet{
             print("设置后")
@@ -59,11 +58,8 @@ class LXPlayerController: NSObject {
     
     init(url :URL, frame: CGRect){
         super.init()
-//        asset = AVAsset(url: url)
-//        prepareToPlay(frame: frame)
-    
+
         let playerItem = playItem(url: url)
-        //        player.replaceCurrentItem(with: playerItem)
         currentPlayerItem = playerItem
         prepareToPlay(frame: frame)
     }
@@ -80,7 +76,7 @@ class LXPlayerController: NSObject {
     private func prepareToPlay(frame:CGRect) {
         currentPlayerItem.addObserver(self, forKeyPath: STATUS_KEYPATH, options: [.new, .old, .initial], context: nil)
         player = AVPlayer(playerItem: currentPlayerItem)
-        playerView = LXPlayerView(player: player,frame:frame)
+        playerView = LXPlayerView(player: player,frame:frame,category:.normal)
         let gestureRecog = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         playerView.addGestureRecognizer(gestureRecog)
         self.transport = playerView.overlayView
@@ -99,8 +95,6 @@ class LXPlayerController: NSObject {
 }
 extension LXPlayerController : LXTransportDelegate{
 
-
-
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == STATUS_KEYPATH {
             DispatchQueue.main.async {
@@ -109,7 +103,8 @@ extension LXPlayerController : LXTransportDelegate{
                     self.transport?.setCurrentTime(time: CMTimeGetSeconds(kCMTimeZero), duration: CMTimeGetSeconds(duration))
                     self.addPlayerItemTimeObserver()
                     self.addItemEndObserverForPlayerItem()
-                    //self.player.play()
+                    self.player.play()
+                    self.playerView.overlayView.playButton.isSelected = true
                     self.loadMediaOptions()
                     self.generateThumbnails()
                     print("播放")
@@ -128,7 +123,8 @@ extension LXPlayerController : LXTransportDelegate{
             let duration = CMTimeGetSeconds(self.currentPlayerItem.duration)
             self.transport?.setCurrentTime(time: currentTime, duration: duration)
             }
-        self.timeObserver = self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback) as AnyObject
+
+        self.timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: callback) as AnyObject
     }
     func addItemEndObserverForPlayerItem() {
         let name = Notification.Name.AVPlayerItemDidPlayToEndTime;
@@ -210,6 +206,7 @@ extension LXPlayerController : LXTransportDelegate{
         self.player.pause()
         self.player.removeTimeObserver(self.timeObserver as Any)
         self.timeObserver = nil
+ 
     }
     func scrubbedToTime(time : TimeInterval){
         currentPlayerItem.cancelPendingSeeks()
@@ -240,9 +237,8 @@ extension LXPlayerController : LXTransportDelegate{
     func delayAnimationAction() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             if(!self.delayAnimation && self.playerView.overlayView.alpha != 0.0){
-                self.playerView.overlayView.alpha = 0.0
-                self.playerView.overlayView.filmStripView.isHidden = true
-                self.playerView.overlayView.showButton.isSelected = false
+                self.playerView.coverHidden = true
+                
             }
             
         })

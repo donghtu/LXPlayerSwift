@@ -56,7 +56,7 @@ class LXVideoTableViewCell: UITableViewCell {
         self.bottomView = UIView()
         self.bottomView?.backgroundColor = .white
         self.contentView.addSubview(self.bottomView!)
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,7 +86,7 @@ class LXVideoTableViewCell: UITableViewCell {
             make.height.equalTo(60)
             make.width.equalTo(60)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-10)
         }
         
         self.bottomView?.snp.makeConstraints({ (make) in

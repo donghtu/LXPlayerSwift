@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
@@ -292,11 +292,15 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LXPlayerSwift/ViewController.swift"
+<<<<<<< HEAD
             timestampString = "576504551.699845"
+=======
+            timestampString = "566460151.990294"
+>>>>>>> 60cbfc542b0a2ac72af78169dcbc1eee6fe9061e
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "isStatusHidden"
             landmarkType = "24">
          </BreakpointContent>

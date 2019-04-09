@@ -17,11 +17,13 @@ class LXOverlayView: UIView ,LXTransportProtocol{
     @IBOutlet weak var showButton: UIButton!
     
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var filmStripView: LXFilmStripView!
     @IBOutlet weak var slider: UISlider!
     weak var delegate: LXTransportDelegate?
     var filmStripHidden = true
+   
     @IBAction func doneButtonClicked(_ sender: Any) {
         delegate?.stop()
     }
@@ -47,6 +49,7 @@ class LXOverlayView: UIView ,LXTransportProtocol{
         }
     }
     @IBAction func showPopupUI(_ sender: UISlider) {
+        print("value changed")
         self.currentTimeLabel.text = "-- : --"
         self.restTimeLabel.text = "-- : --"
         delegate?.scrubbedToTime(time: TimeInterval(sender.value))
@@ -70,7 +73,7 @@ class LXOverlayView: UIView ,LXTransportProtocol{
     }
     
     
-    
+    //MARK: - LXTransportProtocol
     func playbackComplete() {
        self.slider.value = 0
        self.playButton.isSelected = false
@@ -82,13 +85,21 @@ class LXOverlayView: UIView ,LXTransportProtocol{
 
     }
     func setCurrentTime(time : TimeInterval,  duration : TimeInterval){
-        self.slider.minimumValue = 0.0
-        self.slider.maximumValue = Float(duration)
-        self.slider.value = Float(time)
-        let currentTime : Int = Int(ceil(time))
-        let restTime = Int(duration - time)
-        self.currentTimeLabel.text = formatSeconds(value: currentTime)
-        self.restTimeLabel.text = formatSeconds(value: restTime)
+        if duration.isNaN{
+            print("NANNANNANNAN")
+            self.currentTimeLabel.text = "--"
+            self.restTimeLabel.text = "--"
+        }else {
+            
+            self.slider.maximumValue = Float(duration)
+            self.slider.minimumValue = 0.0
+            self.slider.value = Float(time)
+            let currentTime : Int = Int(ceil(time))
+            let restTime = Int(duration - time)
+            self.currentTimeLabel.text = formatSeconds(value: currentTime)
+            self.restTimeLabel.text = formatSeconds(value: restTime)
+        }
+        
     }
     func setScrubbingTime(time : TimeInterval){
 

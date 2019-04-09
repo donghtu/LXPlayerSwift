@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5BFE8DB8E0D7A0B610822980DA740108"
+               BlueprintIdentifier = "12D4D6D147717238690F7DDCFB155255"
                BuildableName = "Pods_LXPlayerSwift.framework"
                BlueprintName = "Pods-LXPlayerSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5BFE8DB8E0D7A0B610822980DA740108"
+            BlueprintIdentifier = "12D4D6D147717238690F7DDCFB155255"
             BuildableName = "Pods_LXPlayerSwift.framework"
             BlueprintName = "Pods-LXPlayerSwift"
             ReferencedContainer = "container:Pods.xcodeproj">
