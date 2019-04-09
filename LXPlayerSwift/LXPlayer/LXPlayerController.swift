@@ -135,6 +135,7 @@ extension LXPlayerController : LXTransportDelegate{
         let callback = {[unowned self] (note : Notification) -> Void in
             self.player.seek(to: kCMTimeZero, completionHandler: { (finished) in
                 self.transport?.playbackComplete()
+                self.playerView.removeFromSuperview()
             })
         }
         self.itemEndObserver = NotificationCenter.default.addObserver(forName: name, object: currentPlayerItem, queue: OperationQueue.main, using: callback);
@@ -192,10 +193,12 @@ extension LXPlayerController : LXTransportDelegate{
     //MARK: - LXTransportDelegate
     func play(){
         self.player.play()
+        self.playerView.overlayView.playButton.isSelected = true
     }
     func pause(){
         self.lastPlaybackRate = self.player.rate
         self.player.pause()
+        self.playerView.overlayView.playButton.isSelected = false
     }
     func stop(){
         self.player.rate = 0.0
@@ -204,12 +207,14 @@ extension LXPlayerController : LXTransportDelegate{
     func scrubbingDidStart(){
         self.delayAnimation = true
         self.lastPlaybackRate = self.player.rate
-        self.player.removeTimeObserver(self.timeObserver!)
+        self.player.pause()
+        self.player.removeTimeObserver(self.timeObserver as Any)
         self.timeObserver = nil
     }
     func scrubbedToTime(time : TimeInterval){
         currentPlayerItem.cancelPendingSeeks()
         player.seek(to: CMTimeMakeWithSeconds(time, Int32(NSEC_PER_SEC)), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        
     }
     func scrubbingDidEnd(){
         self.delayAnimation = false

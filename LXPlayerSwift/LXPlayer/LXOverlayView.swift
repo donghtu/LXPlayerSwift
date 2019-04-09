@@ -73,6 +73,7 @@ class LXOverlayView: UIView ,LXTransportProtocol{
     
     func playbackComplete() {
        self.slider.value = 0
+       self.playButton.isSelected = false
         print("The end")
     }
 

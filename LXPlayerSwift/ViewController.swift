@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }
     var dataSource =  [VideoModel]()
     lazy var tableView : UITableView = {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 64, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 70))
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 10))
         tableView.dataSource = self
         tableView.delegate   = self
         tableView.tableFooterView = UIView()
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         let footer = MJRefreshAutoNormalFooter()
         footer.stateLabel.textColor = .black
         footer.setRefreshingTarget(self, refreshingAction: #selector(getSIDArray))
-        footer.setTitle("上拉刷新", for: .idle)
+//        footer.setTitle("上拉刷新", for: .idle)
         footer.setTitle("释放更新", for: .pulling)
         footer.setTitle("正在刷新...", for: .refreshing)
         self.tableView.mj_footer = footer
@@ -90,14 +90,17 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
             
         }else{
 //            let localURL = Bundle.main.url(forResource: "hubblecast", withExtension: "m4v")
-            
+            var rect = currentCell?.bounds
+            let height = (rect?.size.height)! - 20
+            rect?.size.height = height
             let videoUrl = URL(string: model.mp4_url!)
-            controller  = LXPlayerController(url: videoUrl!,frame: (currentCell?.bounds)!)
+            controller  = LXPlayerController(url: videoUrl!,frame: (rect)!)
 //            let playerView  = controller?.view
 //            currentCell!.addSubview(playerView!)
         }
         let playerView  = controller?.view
         currentCell!.addSubview(playerView!)
+        controller?.play()
     }
     
     //MARK: - UITableViewDelegate,UITableViewDataSource
@@ -124,10 +127,10 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,LXVideoCell
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+     
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 128
+        return 148
     }
     
 }
